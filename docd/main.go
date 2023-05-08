@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-
+	"strings"
 	"cloud.google.com/go/errorreporting"
 
 	"github.com/gorilla/mux"
@@ -20,6 +20,8 @@ var (
 	listenAddr = flag.String("addr", ":8888", "The address to listen on (e.g. 127.0.0.1:8888)")
 
 	inputPath = flag.String("input", "", "The file path to convert and exit; no server")
+
+        languages = flag.String("lang", "eng,chi_sim", "Set OCR language list")
 
 	errorReporting                 = flag.Bool("error-reporting", false, "Whether or not to enable GCP Error Reporting")
 	errorReportingGCPProjectID     = flag.String("error-reporting-gcp-project-id", "", "The GCP project to use for Error Reporting")
@@ -72,6 +74,12 @@ func main() {
 		MaxLinkDensity:        *readabilityMaxLinkDensity,
 		MaxHeadingDistance:    *readabilityMaxHeadingDistance,
 		ReadabilityUseClasses: *readabilityUseClasses,
+	}
+
+	if languages != nil && *languages != "" {
+		log.Printf("Set languages: %s\n", *languages)
+		langSet := strings.Split(*languages, ",")
+		docconv.SetImageLanguages(langSet...)
 	}
 
 	if *inputPath != "" {

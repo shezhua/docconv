@@ -39,6 +39,10 @@ Now you can add `-tags ocr` to any `go` command when building/fetching/testing `
 This may complain on macOS, which you can fix by installing [tesseract](https://tesseract-ocr.github.io) via brew:
 
     $ brew install tesseract
+## docker image build
+
+
+    $ docker build --no-cache -t bomayu:docd -f docd/Dockerfile .
 
 ## docd tool
 
