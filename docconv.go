@@ -14,6 +14,7 @@ import (
 // Response payload sent back to the requestor
 type Response struct {
 	Body  string            `json:"body"`
+	Info  map[string]string `json:"info,omitempty"`
 	Meta  map[string]string `json:"meta"`
 	MSecs uint32            `json:"msecs"`
 	Error string            `json:"error"`

@@ -11,6 +11,7 @@ require (
 	github.com/otiai10/gosseract/v2 v2.2.4
 	github.com/richardlehane/mscfb v1.0.3
 	github.com/richardlehane/msoleps v1.0.3
+	github.com/wangbin/jiebago v0.3.2
 	golang.org/x/net v0.7.0
 	google.golang.org/protobuf v1.28.0
 )
